@@ -2,6 +2,15 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { tokenRouter } from "./routers/token";
+import { dashboardRouter } from "./routers/dashboard";
+import { campaignsRouter } from "./routers/campaigns";
+import { adsRouter } from "./routers/ads";
+import { aiRouter } from "./routers/ai";
+import { breakevenRouter } from "./routers/breakeven";
+import { analyticsRouter } from "./routers/analytics";
+import { automationRouter } from "./routers/automation";
+import { abtestRouter } from "./routers/abtest";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -17,12 +26,15 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  token: tokenRouter,
+  dashboard: dashboardRouter,
+  campaigns: campaignsRouter,
+  ads: adsRouter,
+  ai: aiRouter,
+  breakeven: breakevenRouter,
+  analytics: analyticsRouter,
+  automation: automationRouter,
+  abtest: abtestRouter,
 });
 
 export type AppRouter = typeof appRouter;

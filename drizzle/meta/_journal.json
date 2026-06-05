@@ -1,5 +1,27 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1780641980209,
+      "tag": "0000_chief_mordo",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1780642412168,
+      "tag": "0001_boring_punisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1780643314406,
+      "tag": "0002_chief_dark_beast",
+      "breakpoints": true
+    }
+  ]
 }
