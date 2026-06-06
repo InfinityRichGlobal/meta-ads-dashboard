@@ -41,91 +41,99 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Cyberpunk neon palette (raw) */
-  --color-neon-pink: oklch(0.7 0.27 350);
-  --color-neon-blue: oklch(0.72 0.19 230);
-  --color-neon-cyan: oklch(0.85 0.16 195);
-  --color-neon-purple: oklch(0.62 0.25 300);
-
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Orbitron", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --ease-out-snappy: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Cyberpunk is dark-only. Both :root and .dark resolve to the same neon scheme. */
-:root,
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.985 0.002 250);
+  --foreground: oklch(0.14 0.015 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0.015 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0.015 255);
+  --primary: oklch(0.5 0.22 264);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.005 255);
+  --secondary-foreground: oklch(0.25 0.015 255);
+  --muted: oklch(0.96 0.004 255);
+  --muted-foreground: oklch(0.52 0.012 255);
+  --accent: oklch(0.94 0.015 264);
+  --accent-foreground: oklch(0.35 0.18 264);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.91 0.005 255);
+  --input: oklch(0.91 0.005 255);
+  --ring: oklch(0.5 0.22 264);
+  --chart-1: oklch(0.5 0.22 264);
+  --chart-2: oklch(0.58 0.18 200);
+  --chart-3: oklch(0.62 0.16 150);
+  --chart-4: oklch(0.6 0.2 340);
+  --chart-5: oklch(0.65 0.17 55);
+  --sidebar: oklch(0.975 0.003 255);
+  --sidebar-foreground: oklch(0.22 0.015 255);
+  --sidebar-primary: oklch(0.5 0.22 264);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.93 0.012 264);
+  --sidebar-accent-foreground: oklch(0.35 0.18 264);
+  --sidebar-border: oklch(0.91 0.005 255);
+  --sidebar-ring: oklch(0.5 0.22 264);
+}
+
 .dark {
-  --radius: 0.5rem;
-
-  --background: oklch(0.13 0.03 280);
-  --foreground: oklch(0.93 0.02 250);
-
-  --card: oklch(0.17 0.035 278);
-  --card-foreground: oklch(0.93 0.02 250);
-
-  --popover: oklch(0.15 0.035 280);
-  --popover-foreground: oklch(0.93 0.02 250);
-
-  --primary: oklch(0.7 0.27 350);
-  --primary-foreground: oklch(0.13 0.03 280);
-
-  --secondary: oklch(0.24 0.05 278);
-  --secondary-foreground: oklch(0.9 0.02 250);
-
-  --muted: oklch(0.22 0.04 280);
-  --muted-foreground: oklch(0.68 0.04 260);
-
-  --accent: oklch(0.72 0.19 230);
-  --accent-foreground: oklch(0.13 0.03 280);
-
-  --destructive: oklch(0.62 0.24 18);
-  --destructive-foreground: oklch(0.98 0 0);
-
-  --border: oklch(0.34 0.06 285 / 55%);
-  --input: oklch(0.3 0.05 285 / 70%);
-  --ring: oklch(0.72 0.19 230);
-
-  --chart-1: oklch(0.7 0.27 350);
-  --chart-2: oklch(0.72 0.19 230);
-  --chart-3: oklch(0.85 0.16 195);
-  --chart-4: oklch(0.62 0.25 300);
-  --chart-5: oklch(0.82 0.17 90);
-
-  --sidebar: oklch(0.15 0.035 282);
-  --sidebar-foreground: oklch(0.85 0.03 250);
-  --sidebar-primary: oklch(0.7 0.27 350);
-  --sidebar-primary-foreground: oklch(0.13 0.03 280);
-  --sidebar-accent: oklch(0.24 0.05 278);
-  --sidebar-accent-foreground: oklch(0.92 0.02 250);
-  --sidebar-border: oklch(0.34 0.06 285 / 45%);
-  --sidebar-ring: oklch(0.72 0.19 230);
+  --radius: 0.625rem;
+  --background: oklch(0.1 0.008 255);
+  --foreground: oklch(0.94 0.008 255);
+  --card: oklch(0.14 0.008 255);
+  --card-foreground: oklch(0.94 0.008 255);
+  --popover: oklch(0.14 0.008 255);
+  --popover-foreground: oklch(0.94 0.008 255);
+  --primary: oklch(0.6 0.22 264);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.2 0.01 255);
+  --secondary-foreground: oklch(0.88 0.008 255);
+  --muted: oklch(0.18 0.008 255);
+  --muted-foreground: oklch(0.58 0.01 255);
+  --accent: oklch(0.22 0.015 264);
+  --accent-foreground: oklch(0.78 0.15 264);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.22 0.008 255);
+  --input: oklch(0.22 0.008 255);
+  --ring: oklch(0.6 0.22 264);
+  --chart-1: oklch(0.6 0.22 264);
+  --chart-2: oklch(0.65 0.18 200);
+  --chart-3: oklch(0.68 0.16 150);
+  --chart-4: oklch(0.65 0.2 340);
+  --chart-5: oklch(0.7 0.17 55);
+  --sidebar: oklch(0.12 0.008 255);
+  --sidebar-foreground: oklch(0.88 0.008 255);
+  --sidebar-primary: oklch(0.6 0.22 264);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.2 0.015 264);
+  --sidebar-accent-foreground: oklch(0.78 0.15 264);
+  --sidebar-border: oklch(0.22 0.008 255);
+  --sidebar-ring: oklch(0.6 0.22 264);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  html {
-    color-scheme: dark;
-  }
+  * { @apply border-border outline-ring/50; }
+  html { color-scheme: light dark; }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    /* Layered cyberpunk grid + radial glows over deep #0A0A1A-ish base */
-    background-color: #0a0a1a;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 15% 0%, oklch(0.7 0.27 350 / 0.12), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 85% 10%, oklch(0.72 0.19 230 / 0.12), transparent 60%),
-      linear-gradient(oklch(0.5 0.1 280 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.5 0.1 280 / 0.04) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-    background-attachment: fixed;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, .font-display {
+  h1, h2, h3, h4, h5, h6, .font-display {
     font-family: var(--font-display);
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
+    font-weight: 600;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -148,87 +156,47 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
+  .flex { min-height: 0; min-width: 0; }
   @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
   }
-
   @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      max-width: 1280px;
-    }
+    .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; }
   }
 }
 
 @layer utilities {
-  /* Neon glow text */
-  .text-glow-pink {
-    color: oklch(0.78 0.2 350);
-    text-shadow: 0 0 6px oklch(0.7 0.27 350 / 0.7), 0 0 18px oklch(0.7 0.27 350 / 0.45);
-  }
-  .text-glow-blue {
-    color: oklch(0.82 0.16 230);
-    text-shadow: 0 0 6px oklch(0.72 0.19 230 / 0.7), 0 0 18px oklch(0.72 0.19 230 / 0.45);
-  }
-  .text-glow-cyan {
-    color: oklch(0.88 0.14 195);
-    text-shadow: 0 0 6px oklch(0.85 0.16 195 / 0.7), 0 0 18px oklch(0.85 0.16 195 / 0.4);
-  }
-
-  /* Neon borders / box glow */
-  .glow-pink {
-    box-shadow: 0 0 0 1px oklch(0.7 0.27 350 / 0.5), 0 0 12px oklch(0.7 0.27 350 / 0.35), inset 0 0 12px oklch(0.7 0.27 350 / 0.08);
-  }
-  .glow-blue {
-    box-shadow: 0 0 0 1px oklch(0.72 0.19 230 / 0.5), 0 0 12px oklch(0.72 0.19 230 / 0.35), inset 0 0 12px oklch(0.72 0.19 230 / 0.08);
-  }
-  .glow-soft {
-    box-shadow: 0 0 0 1px oklch(0.72 0.19 230 / 0.25), 0 0 16px oklch(0.62 0.25 300 / 0.18);
-  }
-
-  /* Cyberpunk panel surface */
+  .text-glow-pink { color: oklch(0.5 0.22 264); }
+  .text-glow-blue { color: oklch(0.52 0.2 240); }
+  .text-glow-cyan { color: oklch(0.55 0.18 200); }
+  .dark .text-glow-pink { color: oklch(0.72 0.2 264); }
+  .dark .text-glow-blue { color: oklch(0.72 0.18 240); }
+  .dark .text-glow-cyan { color: oklch(0.75 0.16 200); }
+  .glow-pink { box-shadow: 0 0 0 1px oklch(0.5 0.22 264 / 0.15), 0 4px 16px oklch(0.5 0.22 264 / 0.08); }
+  .glow-blue { box-shadow: 0 0 0 1px oklch(0.52 0.2 240 / 0.15), 0 4px 16px oklch(0.52 0.2 240 / 0.08); }
+  .glow-soft { box-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 4px 12px oklch(0 0 0 / 0.06); }
+  .dark .glow-pink { box-shadow: 0 0 0 1px oklch(0.6 0.22 264 / 0.25), 0 4px 20px oklch(0.6 0.22 264 / 0.1); }
+  .dark .glow-blue { box-shadow: 0 0 0 1px oklch(0.6 0.2 240 / 0.25), 0 4px 20px oklch(0.6 0.2 240 / 0.1); }
+  .dark .glow-soft { box-shadow: 0 1px 2px oklch(0 0 0 / 0.2), 0 4px 12px oklch(0 0 0 / 0.25); }
   .cyber-panel {
-    background: linear-gradient(160deg, oklch(0.18 0.04 280 / 0.9), oklch(0.14 0.035 282 / 0.92));
-    backdrop-filter: blur(8px);
-    border: 1px solid oklch(0.4 0.08 285 / 0.4);
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 4px 12px oklch(0 0 0 / 0.05);
   }
-
-  .cyber-grid-bg {
-    background-image:
-      linear-gradient(oklch(0.5 0.1 280 / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.5 0.1 280 / 0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
+  .dark .cyber-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px oklch(0 0 0 / 0.2), 0 4px 12px oklch(0 0 0 / 0.25);
   }
-
-  .neon-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.7 0.27 350 / 0.7), oklch(0.72 0.19 230 / 0.7), transparent);
-  }
-
+  .cyber-grid-bg { background-image: none; }
+  .neon-divider { height: 1px; background: var(--border); }
   @keyframes neon-pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.55; }
+    50% { opacity: 0.7; }
   }
-  .animate-neon-pulse {
-    animation: neon-pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-
-  .clip-corner {
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
-  }
+  .animate-neon-pulse { animation: neon-pulse 2.5s ease-in-out infinite; }
+  .clip-corner { clip-path: none; border-radius: var(--radius-lg); }
+  .card-hover { transition: box-shadow 0.2s var(--ease-out-snappy), transform 0.2s var(--ease-out-snappy); }
+  .card-hover:hover { box-shadow: 0 4px 20px oklch(0 0 0 / 0.08), 0 1px 4px oklch(0 0 0 / 0.04); transform: translateY(-1px); }
+  .dark .card-hover:hover { box-shadow: 0 4px 24px oklch(0 0 0 / 0.35), 0 1px 4px oklch(0 0 0 / 0.2); }
 }
