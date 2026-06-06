@@ -33,6 +33,7 @@ import {
   LayoutDashboard,
   LogOut,
   MapPinned,
+  Target,
   PanelLeft,
   Sparkles,
   Table2,
@@ -70,6 +71,7 @@ const menuGroups: MenuGroup[] = [
       { icon: MapPinned, label: "Geo Heatmap", path: "/geo" },
       { icon: ImageIcon, label: "Creative", path: "/creative" },
       { icon: Users, label: "Audience", path: "/audience" },
+      { icon: Target, label: "Audience Research", path: "/audience-research" },
       { icon: CalendarClock, label: "Dayparting", path: "/dayparting" },
       { icon: Zap, label: "Audience Quality", path: "/quality" },
       { icon: FlaskConical, label: "A/B Test", path: "/abtest" },
@@ -110,23 +112,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="cyber-panel clip-corner glow-pink flex flex-col items-center gap-8 p-10 max-w-md w-full">
+        <div className="cyber-panel flex flex-col items-center gap-8 p-10 max-w-md w-full rounded-2xl">
           <div className="flex flex-col items-center gap-4">
-            <div className="font-display text-3xl font-extrabold text-glow-pink">NEONADS</div>
-            <h1 className="text-xl font-semibold tracking-tight text-center text-glow-blue font-display">
+            <div className="text-3xl font-bold tracking-tight text-primary">Meta Ads</div>
+            <h1 className="text-xl font-semibold tracking-tight text-center text-foreground">
               เข้าสู่ระบบเพื่อดำเนินการต่อ
             </h1>
             <p className="text-sm text-muted-foreground text-center max-w-sm">
               ศูนย์บัญชาการ Meta Ads ต้องยืนยันตัวตนก่อนใช้งาน กดปุ่มด้านล่างเพื่อเข้าสู่ระบบ
             </p>
           </div>
-          <Button
-            onClick={() => {
-              window.location.href = getLoginUrl();
-            }}
-            size="lg"
-            className="w-full glow-pink font-display tracking-wider"
-          >
+          <Button onClick={() => { window.location.href = getLoginUrl(); }} size="lg" className="w-full font-medium tracking-normal">
             เข้าสู่ระบบ
           </Button>
         </div>
@@ -135,13 +131,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": `${sidebarWidth}px`,
-        } as CSSProperties
-      }
-    >
+    <SidebarProvider style={{ "--sidebar-width": `${sidebarWidth}px` } as CSSProperties}>
       <DashboardLayoutContent setSidebarWidth={setSidebarWidth}>{children}</DashboardLayoutContent>
     </SidebarProvider>
   );
@@ -194,18 +184,12 @@ function DashboardLayoutContent({ children, setSidebarWidth }: DashboardLayoutCo
         <Sidebar collapsible="icon" className="border-r border-sidebar-border" disableTransition={isResizing}>
           <SidebarHeader className="h-16 justify-center border-b border-sidebar-border">
             <div className="flex items-center gap-3 px-2 transition-all w-full">
-              <button
-                onClick={toggleSidebar}
-                className="h-8 w-8 flex items-center justify-center hover:bg-accent/20 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring shrink-0"
-                aria-label="Toggle navigation"
-              >
+              <button onClick={toggleSidebar} className="h-8 w-8 flex items-center justify-center hover:bg-accent/20 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring shrink-0" aria-label="Toggle navigation">
                 <PanelLeft className="h-4 w-4 text-muted-foreground" />
               </button>
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="font-display font-extrabold tracking-widest truncate text-glow-pink text-lg">
-                    NEONADS
-                  </span>
+                  <span className="font-semibold tracking-tight truncate text-primary text-base">Meta Ads</span>
                 </div>
               ) : null}
             </div>
@@ -215,7 +199,7 @@ function DashboardLayoutContent({ children, setSidebarWidth }: DashboardLayoutCo
             {menuGroups.map((grp) => (
               <div key={grp.group} className="px-2 py-1">
                 {!isCollapsed && (
-                  <SidebarGroupLabel className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground/70 font-display">
+                  <SidebarGroupLabel className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground/60 font-medium">
                     {grp.group}
                   </SidebarGroupLabel>
                 )}
@@ -229,9 +213,7 @@ function DashboardLayoutContent({ children, setSidebarWidth }: DashboardLayoutCo
                           onClick={() => setLocation(item.path)}
                           tooltip={item.label}
                           className={`h-9 transition-all font-normal ${
-                            isActive
-                              ? "bg-primary/15 text-glow-pink border border-primary/40"
-                              : "hover:bg-accent/10"
+                            isActive ? "bg-primary/10 text-primary border border-primary/20" : "hover:bg-accent/10"
                           }`}
                         >
                           <item.icon className={`h-4 w-4 ${isActive ? "text-primary" : ""}`} />
@@ -261,10 +243,7 @@ function DashboardLayoutContent({ children, setSidebarWidth }: DashboardLayoutCo
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 cyber-panel">
-                <DropdownMenuItem
-                  onClick={logout}
-                  className="cursor-pointer text-destructive focus:text-destructive"
-                >
+                <DropdownMenuItem onClick={logout} className="cursor-pointer text-destructive focus:text-destructive">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>ออกจากระบบ</span>
                 </DropdownMenuItem>
@@ -273,13 +252,8 @@ function DashboardLayoutContent({ children, setSidebarWidth }: DashboardLayoutCo
           </SidebarFooter>
         </Sidebar>
         <div
-          className={`absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-primary/30 transition-colors ${
-            isCollapsed ? "hidden" : ""
-          }`}
-          onMouseDown={() => {
-            if (isCollapsed) return;
-            setIsResizing(true);
-          }}
+          className={`absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-primary/30 transition-colors ${isCollapsed ? "hidden" : ""}`}
+          onMouseDown={() => { if (isCollapsed) return; setIsResizing(true); }}
           style={{ zIndex: 50 }}
         />
       </div>
@@ -289,9 +263,7 @@ function DashboardLayoutContent({ children, setSidebarWidth }: DashboardLayoutCo
           <div className="flex border-b border-sidebar-border h-14 items-center justify-between bg-background/80 px-2 backdrop-blur sticky top-0 z-40">
             <div className="flex items-center gap-2">
               <SidebarTrigger className="h-9 w-9 rounded-lg" />
-              <span className="tracking-tight text-foreground font-display text-glow-blue">
-                {activeMenuItem?.label ?? "เมนู"}
-              </span>
+              <span className="tracking-tight text-foreground font-medium">{activeMenuItem?.label ?? "เมนู"}</span>
             </div>
           </div>
         )}
