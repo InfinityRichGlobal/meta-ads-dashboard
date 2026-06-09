@@ -10,6 +10,7 @@ import {
   getDayHourInsights,
   getDeviceInsights,
   getRegionInsights,
+  getCountryInsights,
   MESSAGE_ACTION_TYPES,
   PURCHASE_ACTION_TYPES,
   extractActionValue,
@@ -49,6 +50,31 @@ export const analyticsRouter = router({
         });
         regions.sort((a, b) => b.spend - a.spend);
         return { regions, range };
+      });
+    }),
+
+  geoCountry: protectedProcedure
+    .input(z.object({ datePreset: datePresetSchema.default("last_30d") }))
+    .query(async ({ ctx, input }) => {
+      const { accessToken, adAccountId } = await resolveToken(ctx.user.id);
+      const range = getDateRange(input.datePreset as DatePreset);
+      return withMetaErrors(async () => {
+        const rows = await getCountryInsights(accessToken, adAccountId, range);
+        const countries = rows.map((r) => {
+          const m = deriveMetrics(r);
+          return {
+            country: r.country ?? "Unknown",
+            spend: Number(m.spend.toFixed(2)),
+            impressions: m.impressions,
+            clicks: m.clicks,
+            conversions: m.conversions,
+            ctr: Number(m.ctr.toFixed(2)),
+            cpa: Number(m.cpa.toFixed(2)),
+            roas: Number(m.roas.toFixed(2)),
+          };
+        });
+        countries.sort((a, b) => b.spend - a.spend);
+        return { countries, range };
       });
     }),
 

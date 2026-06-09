@@ -41,7 +41,7 @@ export default function AudienceResearch() {
   const [productDesc, setProductDesc] = useState("");
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [showEstimate, setShowEstimate] = useState(false);
-  const [estimateResult, setEstimateResult] = useState<{ users_lower_bound: number; users_upper_bound: number } | null>(null);
+  const [estimateResult, setEstimateResult] = useState<{ audienceSizeLowerBound: number; audienceSizeUpperBound: number } | null>(null);
 
   const searchQ = trpc.audience.searchInterests.useQuery(
     { query: debouncedQ },
@@ -189,7 +189,7 @@ export default function AudienceResearch() {
             {showEstimate && estimateResult && (
               <div className="mt-3 rounded-lg bg-primary/5 border border-primary/20 p-4 text-center">
                 <p className="text-xs text-muted-foreground mb-1">ขนาดกลุ่มเป้าหมายโดยประมาณ</p>
-                <p className="text-2xl font-bold text-primary">{fmtAudience(estimateResult.users_lower_bound, estimateResult.users_upper_bound)}</p>
+                <p className="text-2xl font-bold text-primary">{fmtAudience(estimateResult.audienceSizeLowerBound, estimateResult.audienceSizeUpperBound)}</p>
                 <p className="text-xs text-muted-foreground mt-1">คน</p>
               </div>
             )}

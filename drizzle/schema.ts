@@ -28,7 +28,7 @@ export const metaTokens = mysqlTable("meta_tokens", {
   adAccountId: varchar("adAccountId", { length: 64 }).notNull(),
   tokenLabel: varchar("tokenLabel", { length: 128 }),
   scopes: text("scopes"),
-  status: mysqlEnum("status", ["active", "expired", "revoked"]).default("active").notNull(),
+  status: mysqlEnum("status", ["active", "inactive", "expired", "revoked"]).default("active").notNull(),
   expiresAt: timestamp("expiresAt"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),

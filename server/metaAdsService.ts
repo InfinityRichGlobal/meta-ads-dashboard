@@ -355,6 +355,15 @@ export async function getRegionInsights(token: string, adAccountId: string, rang
   });
 }
 
+export async function getCountryInsights(token: string, adAccountId: string, range: TimeRange): Promise<any[]> {
+  return getInsights(token, adAccountId, {
+    level: "account",
+    timeRange: range,
+    breakdowns: "country",
+    fields: BASE_INSIGHT_FIELDS,
+  });
+}
+
 export async function getAgeGenderInsights(token: string, adAccountId: string, range: TimeRange): Promise<any[]> {
   return getInsights(token, adAccountId, {
     level: "account",
@@ -441,4 +450,84 @@ export async function updateAdStatus(
     throw new MetaApiError(parseMetaApiError(json));
   }
   return true;
+}
+
+/* ============================================================
+ * Targeting / Audience search (Meta Targeting Search API)
+ * ============================================================ */
+
+/** Search targeting interests via adinterestsearch endpoint. */
+export async function searchTargetingInterests(
+  token: string,
+  query: string,
+  locale = "th_TH",
+): Promise<any[]> {
+  const json = await graphFetch(
+    "search",
+    { type: "adinterest", q: query, locale, limit: "50" },
+    token,
+  );
+  return Array.isArray(json?.data) ? json.data : [];
+}
+
+/** Browse targeting categories (interests or behaviors) for an ad account. */
+export async function browseTargetingCategories(
+  token: string,
+  adAccountId: string,
+  type: "interests" | "behaviors" = "interests",
+): Promise<any[]> {
+  const acct = adAccountId.startsWith("act_") ? adAccountId : `act_${adAccountId}`;
+  const classMap: Record<string, string> = {
+    interests: "interests",
+    behaviors: "behaviors",
+  };
+  const json = await graphFetch(
+    `${acct}/targetingbrowse`,
+    { limit: "200" },
+    token,
+  ).catch(() => null);
+  const rows: any[] = Array.isArray(json?.data) ? json.data : [];
+  const wanted = classMap[type];
+  // targetingbrowse returns mixed types; filter by `type` field when present
+  const filtered = rows.filter(
+    (r: any) => !r.type || String(r.type).toLowerCase().includes(wanted.slice(0, 6)),
+  );
+  return filtered.length > 0 ? filtered : rows;
+}
+
+/** Estimate reach/audience size for a targeting spec via delivery_estimate. */
+export async function estimateAudienceSize(
+  token: string,
+  adAccountId: string,
+  targetingSpec: Record<string, any>,
+): Promise<{
+  estimateReady: boolean;
+  audienceSizeLowerBound: number;
+  audienceSizeUpperBound: number;
+}> {
+  const acct = adAccountId.startsWith("act_") ? adAccountId : `act_${adAccountId}`;
+  const json = await graphFetch(
+    `${acct}/reachestimate`,
+    { targeting_spec: JSON.stringify(targetingSpec) },
+    token,
+  ).catch(async () => {
+    // Fallback to delivery_estimate (requires optimization_goal)
+    return graphFetch(
+      `${acct}/delivery_estimate`,
+      {
+        targeting_spec: JSON.stringify(targetingSpec),
+        optimization_goal: "REACH",
+      },
+      token,
+    );
+  });
+  const data = Array.isArray(json?.data) ? json.data[0] : json?.data ?? json;
+  const users = data?.users ?? data?.estimate_mau ?? 0;
+  const lower = data?.users_lower_bound ?? data?.estimate_dau ?? users;
+  const upper = data?.users_upper_bound ?? users;
+  return {
+    estimateReady: data?.estimate_ready ?? true,
+    audienceSizeLowerBound: Number(lower) || 0,
+    audienceSizeUpperBound: Number(upper) || 0,
+  };
 }

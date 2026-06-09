@@ -102,8 +102,8 @@ export function SeaMap({ data }: { data: CountryDatum[] }) {
           >
             <ZoomableGroup center={[115, 10]} zoom={1}>
               <Geographies geography={GEO_URL}>
-                {({ geographies }) =>
-                  geographies.map((geo) => {
+                {({ geographies }: { geographies: any[] }) =>
+                  geographies.map((geo: any) => {
                     const iso3 = geo.properties.ADM0_A3 ?? geo.id;
                     const isSeA = SEA_COUNTRIES.has(iso3);
                     const d = byIso3[iso3];

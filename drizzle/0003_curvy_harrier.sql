@@ -1,0 +1,1 @@
+ALTER TABLE `meta_tokens` MODIFY COLUMN `status` enum('active','inactive','expired','revoked') NOT NULL DEFAULT 'active';
