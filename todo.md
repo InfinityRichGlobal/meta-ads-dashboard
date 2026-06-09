@@ -64,4 +64,4 @@
 - [x] Build check (tsc + vite build) - pass
 - [x] Dev server running, OAuth flow verified
 - [x] AbTest PDF export (jspdf + autotable)
-- [ ] Checkpoint + deliver
+- [x] Checkpoint + deliver
