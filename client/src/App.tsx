@@ -15,6 +15,7 @@ import AiCreator from "./pages/AiCreator";
 import Geo from "./pages/Geo";
 import Creative from "./pages/Creative";
 import Audience from "./pages/Audience";
+import AudienceResearch from "./pages/AudienceResearch";
 import Dayparting from "./pages/Dayparting";
 import Quality from "./pages/Quality";
 import AbTest from "./pages/AbTest";
@@ -35,6 +36,7 @@ function Router() {
         <Route path="/geo" component={Geo} />
         <Route path="/creative" component={Creative} />
         <Route path="/audience" component={Audience} />
+        <Route path="/audience-research" component={AudienceResearch} />
         <Route path="/dayparting" component={Dayparting} />
         <Route path="/quality" component={Quality} />
         <Route path="/abtest" component={AbTest} />
